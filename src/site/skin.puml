@@ -1,0 +1,13 @@
+// see http://plantuml.sourceforge.net/skinparam.html
+
+@startuml
+
+skinparam backgroundColor #FFFFFF
+skinparam activity {
+  BackgroundColor Cyan
+  BorderColor Blue
+  ArrowColor Black
+  FontName Impact
+}
+
+@enduml
