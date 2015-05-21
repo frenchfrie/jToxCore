@@ -4,10 +4,10 @@
 
 skinparam backgroundColor #FFFFFF
 skinparam activity {
-  BackgroundColor Cyan
-  BorderColor Blue
-  ArrowColor Black
-  FontName Impact
+  BackgroundColor #ECECFF
+  BorderColor #000CCF
+  ArrowColor #808080
+  FontName Arial
 }
 
 @enduml

@@ -41,28 +41,34 @@ from evil "friends" framing relays must also be implemented.
 Detailed implementation details:
 
 cookie request packet:
-[uint8_t 24][Sender's DHT Public key (32 bytes)][Random nonce (24 
-bytes)][Encrypted message containing: [Sender's real public key (32 
-bytes)][padding (32 bytes)][uint64_t number (must be sent 
-back untouched in cookie response)]]
+
+    [uint8_t 24][Sender's DHT Public key (32 bytes)][Random nonce (24 
+    bytes)][Encrypted message containing: [Sender's real public key (32 
+    bytes)][padding (32 bytes)][uint64_t number (must be sent 
+    back untouched in cookie response)]]
+    
 Encrypted message is encrypted with sender's DHT private key, receiver's DHT
 public key and the nonce.
 
 cookie response packet:
-[uint8_t 25][Random nonce (24 bytes)][Encrypted message containing: 
-[Cookie][uint64_t number (that was sent in the request)]]
+
+    [uint8_t 25][Random nonce (24 bytes)][Encrypted message containing: 
+    [Cookie][uint64_t number (that was sent in the request)]]
+
 Encrypted message is encrypted with sender's DHT private key, receiver's DHT
 public key and the nonce.
 
 The Cookie should be basically:
-[nonce][encrypted data:[uint64_t time][Sender's real public key (32 
-bytes)][Sender's DHT public key (32 bytes)]]
+
+    [nonce][encrypted data:[uint64_t time][Sender's real public key (32 
+    bytes)][Sender's DHT public key (32 bytes)]]
 
 Handshake packet:
-[uint8_t 26][Cookie][nonce][Encrypted message containing: [random 24 bytes base 
-nonce][session public key of the peer (32 bytes)][sha512 hash of the entire 
-Cookie sitting outside the encrypted part][Other Cookie (used by the other to 
-respond to the handshake packet)]]
+
+    [uint8_t 26][Cookie][nonce][Encrypted message containing: [random 24 bytes base 
+    nonce][session public key of the peer (32 bytes)][sha512 hash of the entire 
+    Cookie sitting outside the encrypted part][Other Cookie (used by the other to 
+    respond to the handshake packet)]]
 
 The handshake packet is encrypted using the real private key of the sender, the 
 real public key of the receiver and the nonce.
@@ -90,14 +96,14 @@ in the handshake will be used to encrypt the first data packet sent, the nonce
 
 Data packets:
 
-[uint8_t 27][uint16_t (in network byte order) the last 2 bytes of the nonce 
-used to encrypt this][encrypted with the session key and a nonce:[plain data]]
+    [uint8_t 27][uint16_t (in network byte order) the last 2 bytes of the nonce 
+    used to encrypt this][encrypted with the session key and a nonce:[plain data]]
 
 Plain data in the data packets:
 
-[uint32_t our recvbuffers buffer_start, (highest packet number handled + 
-1)][uint32_t packet number if lossless, our sendbuffer buffer_end if 
-lossy][data]
+    [uint32_t our recvbuffers buffer_start, (highest packet number handled + 
+    1)][uint32_t packet number if lossless, our sendbuffer buffer_end if 
+    lossy][data]
 
 data ids:
 0: padding (skipped until we hit a non zero (data id) byte)
@@ -108,8 +114,10 @@ data ids:
 192+: reserved for Messenger usage (lossy packets).
 255: reserved for Messenger usage (lossless packet)
 
-packet request packet: [uint8_t (1)][uint8_t num][uint8_t num][uint8_t 
-num]...[uint8_t num]
+packet request packet:
+
+    [uint8_t (1)][uint8_t num][uint8_t num][uint8_t 
+    num]...[uint8_t num]
 
 The list of nums are a list of packet numbers the other is requesting.
 In order to get the real packet numbers from this list, take the recvbuffers buffer_start

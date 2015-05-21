@@ -1,0 +1,11 @@
+@startuml
+!include ../skin.puml
+
+Alice --> Alice: Adds Bob tox ID
+
+Alice -> Bob: Sends an onion data with her NO_SPAM number and a message
+Bob --> Bob: Decrypt the message
+
+...
+
+@enduml

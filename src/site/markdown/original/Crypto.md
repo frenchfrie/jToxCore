@@ -16,9 +16,8 @@ case 2: Bob and Alice add their respective public keys to their friends list at 
     
 case 1:  
 Alice sends a onion data (see: Prevent_tracking.txt) packet to bob with the encrypted part containing the friends request like so:  
-```
-[char with a value of 32][nospam number (4 bytes)][Message]
-```
+
+    [char with a value of 32][nospam number (4 bytes)][Message]
 
 Ex message: hello bob it's me alice -_- add me pl0x.
 

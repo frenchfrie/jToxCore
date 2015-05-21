@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="JToxcore">
+<project xmlns="http://maven.apache.org/DECORATION/1.6.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd"
+         name="JToxcore">
 
     <skin>
         <groupId>org.apache.maven.skins</groupId>
@@ -9,25 +11,24 @@
 
     <body>
         <links>
-            <item name="Apache" href="http://www.apache.org/" />
-            <item name="Maven 1.x" href="http://maven.apache.org/maven-1.x/"/>
-            <item name="Maven 2" href="http://maven.apache.org/"/>
+            <item name="Tox project" href="https://tox.im/"/>
         </links>
 
         <menu name="Maven 2.0">
             <item name="Overview" href="index.html"/>
-
-            <item name="av_api" href="original/av_api.html"/>
-            <item name="Crypto" href="original/Crypto.html"/>
-            <item name="DHT" href="original/DHT.html"/>
-            <item name="Group-Chats" href="original/Group-Chats.html"/>
-            <item name="Hardening" href="original/Hardening.html"/>
-            <item name="Prevent_Tracking" href="original/Prevent_Tracking.html"/>
-            <item name="Spam-Prevention" href="original/Spam-Prevention.html"/>
-            <item name="Symmetric-NAT-Transversal" href="original/Symmetric-NAT-Transversal.html"/>
-            <item name="TCP-network" href="original/TCP-network.html"/>
-            <item name="TODO" href="original/TODO.html"/>
-            <item name="Tox_middle_level_network_protocol" href="original/Tox_middle_level_network_protocol.html"/>
+            <item name="original doc" href="original/av_api.html">
+                <item name="av_api" href="original/av_api.html"/>
+                <item name="Crypto" href="original/Crypto.html"/>
+                <item name="DHT" href="original/DHT.html"/>
+                <item name="Group-Chats" href="original/Group-Chats.html"/>
+                <item name="Hardening" href="original/Hardening.html"/>
+                <item name="Prevent_Tracking" href="original/Prevent_Tracking.html"/>
+                <item name="Spam-Prevention" href="original/Spam-Prevention.html"/>
+                <item name="Symmetric-NAT-Transversal" href="original/Symmetric-NAT-Transversal.html"/>
+                <item name="TCP-network" href="original/TCP-network.html"/>
+                <item name="TODO" href="original/TODO.html"/>
+                <item name="Tox_middle_level_network_protocol" href="original/Tox_middle_level_network_protocol.html"/>
+            </item>
         </menu>
 
         <menu ref="reports"/>

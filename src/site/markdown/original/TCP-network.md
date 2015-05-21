@@ -34,7 +34,7 @@ packets.
 and bob just switch to one of the other nodes they are both connected to.
 
 
-Detailed implementation details:
+#### Detailed implementation details:
 
 There are two distinct parts for TCP relays, the client part and the server 
 part.
@@ -54,26 +54,30 @@ all crypto for communication with the server uses the crypto_box() function of
 NaCl.
 
 TCP doesn't have packets so what we will refer to as packets are sent this way: 
-[[uint16_t (length of data)][data]]
+
+    [[uint16_t (length of data)][data]]
 
 So if you would inspect the TCP stream you would see:
-[[uint16_t (length of data)][data]][[uint16_t (length of 
-data)][data]][[uint16_t (length of data)][data]]
+
+    [[uint16_t (length of data)][data]][[uint16_t (length of 
+    data)][data]][[uint16_t (length of data)][data]]
 
 Note that both handshake packets don't have this format (the length for them is 
 always the same so we don't need to specify it.)
 
 When the client connects to the server, he sends this packet:
-[public key of client (32 bytes)][nonce for the encrypted data [24 
-bytes]][encrypted with the private key of the client and public key of the 
-server and the nonce:[public key (32 bytes) and][base nonce we want the server 
-to use to encrypt the packets sent to us (24 bytes)]]
+
+    [public key of client (32 bytes)][nonce for the encrypted data [24 
+    bytes]][encrypted with the private key of the client and public key of the 
+    server and the nonce:[public key (32 bytes) and][base nonce we want the server 
+    to use to encrypt the packets sent to us (24 bytes)]]
 
 The server responds with:
-[nonce for the encrypted data [24 bytes]][encrypted with the public key of the 
-client and private key of the server and the nonce:[public key (32 bytes) 
-and][base nonce we want the client to use to encrypt the packets sent to us (24 
-bytes)]]
+
+    [nonce for the encrypted data [24 bytes]][encrypted with the public key of the 
+    client and private key of the server and the nonce:[public key (32 bytes) 
+    and][base nonce we want the client to use to encrypt the packets sent to us (24 
+    bytes)]]
 
 All packets to the server are end to end encrypted with the information 
 received 
@@ -92,24 +96,41 @@ data of the packet.)
 ids 0 to 15 are reserved for special packets, ids 16 to 255 are used to denote 
 who we want the data to be routed to/who the packet is from.
 
-special ids and packets:
+##### special ids and packets:
+
 0 - Routing request.
-[uint8_t id (0)][public key (32 bytes)]
+
+    [uint8_t id (0)][public key (32 bytes)]
+    
 1 - Routing request response.
-[uint8_t id (1)][uint8_t (rpid) 0 if refused, packet id if accepted][public key 
-(32 bytes)]
+
+    [uint8_t id (1)][uint8_t (rpid) 0 if refused, packet id if accepted][public key 
+    (32 bytes)]
+
 2 - Connect notification:
-[uint8_t id (2)][uint8_t (packet id of connection that got connected)]
+
+    [uint8_t id (2)][uint8_t (packet id of connection that got connected)]
+
 3 - Disconnect notification:
-[uint8_t id (3)][uint8_t (packet id of connection that got disconnected)]
+
+    [uint8_t id (3)][uint8_t (packet id of connection that got disconnected)]
+
 4 - ping packet
-[uint8_t id (4)][uint64_t ping_id (0 is invalid)]
+
+    [uint8_t id (4)][uint64_t ping_id (0 is invalid)]
+
 5 - ping response (pong)
-[uint8_t id (5)][uint64_t ping_id (0 is invalid)]
+
+    [uint8_t id (5)][uint64_t ping_id (0 is invalid)]
+
 6 - OOB send
-[uint8_t id (6)][destination public key (32 bytes)][data]
+
+    [uint8_t id (6)][destination public key (32 bytes)][data]
+
 7 - OOB recv
-[uint8_t id (7)][senders public key (32 bytes)][data]
+
+    [uint8_t id (7)][senders public key (32 bytes)][data]
+
 8 - onion packet (same format as initial onion packet (See: Prevent 
 tracking.txt) but packet id is 8 instead of 128)
 9 - onion packet response (same format as onion packet with id 142 but id is 9 
