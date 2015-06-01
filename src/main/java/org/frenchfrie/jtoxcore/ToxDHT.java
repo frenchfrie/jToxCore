@@ -1,6 +1,5 @@
 package org.frenchfrie.jtoxcore;
 
-import org.frenchfrie.jtoxcore.protocol.ToxDHTNode;
 import org.frenchfrie.jtoxcore.protocol.ToxProtocolService;
 
 import java.util.ArrayList;

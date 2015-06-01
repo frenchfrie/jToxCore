@@ -1,4 +1,4 @@
-package org.frenchfrie.jtoxcore.protocol;
+package org.frenchfrie.jtoxcore;
 
 import java.net.URI;
 import org.joda.time.DateTime;
