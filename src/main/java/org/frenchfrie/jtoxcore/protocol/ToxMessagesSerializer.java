@@ -1,7 +1,9 @@
 package org.frenchfrie.jtoxcore.protocol;
 
-public interface ToxMessagesSerializer {
+import com.google.common.base.Function;
 
-    byte[] serialize(ToxMessage message);
+public interface ToxMessagesSerializer<T> extends Function<ToxMessage, T> {
+
+    T serialize(ToxMessage message);
 
 }
