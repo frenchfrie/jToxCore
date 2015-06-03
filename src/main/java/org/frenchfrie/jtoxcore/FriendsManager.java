@@ -8,7 +8,7 @@ public class FriendsManager {
     private Set<Friend> friendsList = new HashSet<>();
 
 
-    public void addFriend(Messenger messager, byte[] address, byte[] data){
+    public void addFriend(Messenger messager, byte[] address, byte[] data) {
 
         // checks PK is valid
 
@@ -25,7 +25,6 @@ public class FriendsManager {
         // =>
 
 
-
         // if connection OK: set the friend status to connected
 
         // ultimately verify if the friend is connected and send a ONLINE packet
@@ -35,7 +34,7 @@ public class FriendsManager {
     /**
      * Tox is a messager.
      */
-    public static final class Messenger{
+    public static final class Messenger {
 
     }
 

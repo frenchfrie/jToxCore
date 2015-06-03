@@ -1,15 +1,17 @@
 package org.frenchfrie.jtoxcore.protocol;
 
 
-import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is the main entry point for any Tox protocol use. Created after the {@link org.apache.http.protocol.HttpService}.
+ * This class is the main entry point for any Tox protocol use. Created after the <code>org.apache.http.protocol.HttpService</code>.
  * Should be supplied with connections and contextes to work.
+ * <p>
+ * Connections should be state machine that remember if a connection is established, running, closes...
+ * </p>
  *
  * @see <a href="http://docs.oracle.com/javase/tutorial/networking/datagrams/clientServer.html">http://docs.oracle.com/javase/tutorial/networking/datagrams/clientServer.html</a>
  */
@@ -32,16 +34,16 @@ public class ToxProtocolService {
         }
     }
 
-    public void sendMessage(ToxMessage message){
+    public void sendMessage(ToxMessage message) {
         // TODO: decouple message service to message transport layer.
         // hint: see messages as postcards
     }
 
-    public void addMessageListenner(ToxMessageListener listener){
+    public void addMessageListenner(ToxMessageListener listener) {
         messageListeners.add(listener);
     }
 
-    public void removeMessageListenner(ToxMessageListener listener){
+    public void removeMessageListenner(ToxMessageListener listener) {
         messageListeners.remove(listener);
     }
 

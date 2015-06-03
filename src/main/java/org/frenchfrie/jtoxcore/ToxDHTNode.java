@@ -1,7 +1,8 @@
 package org.frenchfrie.jtoxcore;
 
-import java.net.URI;
 import org.joda.time.DateTime;
+
+import java.net.URI;
 
 /**
  * Representation of a DHT node.

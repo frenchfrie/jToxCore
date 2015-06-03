@@ -5,6 +5,6 @@ package org.frenchfrie.jtoxcore.protocol;
  */
 public interface RequestExecutor {
 
-    ToxResponse executeRequest(ToxRequest request);
+    ToxMessageContainer executeRequest(ToxMessageContainer request);
 
 }

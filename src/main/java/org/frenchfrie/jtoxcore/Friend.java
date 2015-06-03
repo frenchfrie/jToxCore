@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Friend {
 
-    private enum FriendStatus{
+    private enum FriendStatus {
         NO_FRIEND,
         CONNECTED,
     }
