@@ -14,18 +14,24 @@
  * limitations under the License.
  */
 
-package org.frenchfrie.jtoxcore.protocol.serialization;
+package org.frenchfrie.jtoxcore.protocol;
 
-import com.google.common.base.Function;
-import org.frenchfrie.jtoxcore.protocol.messages.PingRequest;
+import java.util.Arrays;
 
-public class PingRequestSerializer implements Function<PingRequest, byte[]> {
+import static com.google.common.base.Preconditions.checkArgument;
 
-    @Override
-    public byte[] apply(PingRequest input) {
-        byte[] serializedPing = new byte[40];
-        int size = 1 + 32 + 24 + 1 + 8;
+public class NodeId {
 
-        return new byte[0];
+    public static final int NODE_ID_BYTE_SIZE = 32;
+    private char[] nodeId;
+
+    public NodeId(char[] nodeId) {
+        checkArgument(nodeId.length == NODE_ID_BYTE_SIZE, "A node ID must be %i bytes long.", NODE_ID_BYTE_SIZE);
+        this.nodeId = Arrays.copyOf(nodeId, NODE_ID_BYTE_SIZE);
     }
+
+    public char[] getNodeId() {
+        return nodeId;
+    }
+
 }

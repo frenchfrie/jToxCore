@@ -15,6 +15,5 @@ TODO: insert an UML image
 |  |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
+| 27 | Data packet          |  |  |  |
 |  |  |  |  |  |
-|  |  |  |  |  |
-

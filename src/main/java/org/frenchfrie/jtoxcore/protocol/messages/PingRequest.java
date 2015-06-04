@@ -16,14 +16,19 @@
 
 package org.frenchfrie.jtoxcore.protocol.messages;
 
-import org.frenchfrie.jtoxcore.protocol.ToxMessage;
+import org.frenchfrie.jtoxcore.protocol.NodeId;
+
+import java.util.Random;
 
 import static org.frenchfrie.jtoxcore.protocol.messages.ToxMessagesIds.PING_REQUEST_ID;
 
 /**
  * Message sent to a remote node to ask for a {@link PingResponse ping response}.
  */
-public class PingRequest implements ToxMessage, ToxRequest {
+public class PingRequest extends Ping implements ToxRequest {
+
+    public static final int PING_ID_BYTE_SIZE = 8;
+    public static final int NONCE_BYTE_SIZE = 24;
 
     @Override
     public byte getId() {
@@ -31,7 +36,37 @@ public class PingRequest implements ToxMessage, ToxRequest {
     }
 
     @Override
-    public boolean isMatchingResponse(ToxMessage message) {
-        return false;
+    public boolean isMatchingResponse(ToxResponse response) {
+        boolean match = false;
+        if (response instanceof PingResponse) {
+            PingResponse pingResponse = (PingResponse) response;
+            match = pingResponse.getPingId() == getPingId();
+        }
+        return match;
+    }
+
+    public NodeId getClientNodeId() {
+        return clientNodeId;
+    }
+
+    public void setClientNodeId(NodeId clientNodeId) {
+        this.clientNodeId = clientNodeId;
+    }
+
+    // TODO: random generation should not be here.
+    /**
+     * Generate a random ID for this ping request.
+     */
+    public final void generateId() {
+        pingId = new byte[PING_ID_BYTE_SIZE];
+        new Random().nextBytes(pingId);
+    }
+
+    /**
+     * Generate a random nonce for this ping request.
+     */
+    public final void generateNonce() {
+        nonce = new byte[NONCE_BYTE_SIZE];
+        new Random().nextBytes(nonce);
     }
 }

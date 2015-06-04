@@ -1,4 +1,4 @@
-### The ping - 00, 01
+### The ping - 0, 1
 
 A ping is send every few seconds to distance friends to keep them as "online". The ping request and response are
 identical in structure.

@@ -25,8 +25,8 @@ import org.frenchfrie.jtoxcore.protocol.ToxMessage;
  * This interface could extends ToxMessage but it is not necessary for now.
  * </p>
  */
-public interface ToxRequest {
+public interface ToxRequest extends ToxMessage {
 
-    boolean isMatchingResponse(ToxMessage message);
+    boolean isMatchingResponse(ToxResponse response);
 
 }

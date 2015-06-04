@@ -17,21 +17,27 @@
 package org.frenchfrie.jtoxcore.protocol.messages;
 
 import org.frenchfrie.jtoxcore.protocol.NodeId;
+import org.frenchfrie.jtoxcore.protocol.ToxMessage;
 
-import static org.frenchfrie.jtoxcore.protocol.messages.ToxMessagesIds.DHT_REQUEST_ID;
-
-public class DHTNodesRequest implements ToxRequest {
+public abstract class Ping implements ToxMessage {
+    /**
+     * Arrays of 8 bytes identifying this ping. Ping request and response ids must match.
+     */
+    protected byte[] pingId;
 
     protected NodeId clientNodeId;
 
-    @Override
-    public byte getId() {
-        return DHT_REQUEST_ID;
+    /**
+     * 24 bytes nonce to encrypt payload.
+     */
+    protected byte[] nonce;
+
+    public byte[] getPingId() {
+        return pingId;
     }
 
-    @Override
-    public boolean isMatchingResponse(ToxResponse response) {
-        return false;
+    public void setPingId(byte[] pingId) {
+        this.pingId = pingId;
     }
 
     public NodeId getClientNodeId() {
@@ -40,5 +46,13 @@ public class DHTNodesRequest implements ToxRequest {
 
     public void setClientNodeId(NodeId clientNodeId) {
         this.clientNodeId = clientNodeId;
+    }
+
+    public byte[] getNonce() {
+        return nonce;
+    }
+
+    public void setNonce(byte[] nonce) {
+        this.nonce = nonce;
     }
 }

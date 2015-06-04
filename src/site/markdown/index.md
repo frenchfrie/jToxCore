@@ -16,6 +16,8 @@ Peer discovery is done through two process: auto discover on the same LAN or add
 2) Another user (B) can use this PK to make a friend request.
 3) User A accept the request
 
+See handshaking at https://github.com/irungentoo/toxcore/blob/master/docs/Tox_middle_level_network_protocol.txt
+
 ##### DHT
 
 Tox uses DHT protocol to help find peers. A java implementation can be found here: [http://dks.sics.se/jdht/](http://dks.sics.se/jdht/)
